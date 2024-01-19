@@ -11,13 +11,14 @@ arg_t *arguments = NULL;
 int main(int argc, char **argv)
 {
 	/*(void) argv;*/
-	size_t n - 0;
+	size_t n = 0;
 
 	verify_arguments(argc);
 	start_args();
 	get_stream(argv[1]);
 
-	while (getline(&arguments->line, &n, arguments->stream != -1))
+	while (getline(&arguments->line, &n, arguments->fstream) != -1 && arguments->fstream != NULL)
+
 	{
 		printf("%s", arguments->line);
 	}
