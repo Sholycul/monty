@@ -10,13 +10,10 @@ void start_args()
 	arguments = malloc(sizeof(arg_t));
 
 	if (arguments == NULL)
-	{
-		dprintf(2, "ERROR: malloc failed\n");
-		free(arguments);
-		exit(EXIT_FAILURE);
-	}
+		malloc_failed();
 
-	arguments -> fstream = NULL;
-	arguments -> line = NULL;
+
+	arguments->fstream = NULL;
+	arguments->line = NULL;
 	
 }

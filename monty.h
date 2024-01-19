@@ -2,6 +2,7 @@
 #define MONTY_H
 #define _GNU_SOURCE
 
+#include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -35,6 +36,10 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+void get_stream_err(char *file_name);
+void get_stream(char *file_name);
+void free_arguments(void);
+void malloc_failed(void);
 void verify_arguments(int argc);
 
 /**
