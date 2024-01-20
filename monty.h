@@ -36,6 +36,8 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+void invalid_instruct(void);
+void instructions(void);
 void tokenizer(void);
 void start_args();
 void get_stream_err(char *file_name);
@@ -43,9 +45,27 @@ void get_stream(char *file_name);
 void free_arguments(void);
 void malloc_failed(void);
 void verify_arguments(int argc);
+void push(stack_t **stack, unsigned int line_no);
+void pop(stack_t **stack, unsigned int line_no);
+void pint(stack_t **stack, unsigned int line_no);
+void pall(stack_t **stack, unsigned int line_no);
+void pstr(stack_t **stack, unsigned int line_no);
+void pchar(stack_t **stack, unsigned int line_no);
+void add(stack_t **stack, unsigned int line_no);
+void _div(stack_t **stack, unsigned int line_no);
+void mod(stack_t **stack, unsigned int line_no);
+void mul(stack_t **stack, unsigned int line_no);
+void nop(stack_t **stack, unsigned int line_no);
+void queue(stack_t **stack, unsigned int line_no);
+void stack(stack_t **stack, unsigned int line_no);
+void swap(stack_t **stack, unsigned int line_no);
+void rot1(stack_t **stack, unsigned int line_no);
+void rotr(stack_t **stack, unsigned int line_no);
+void sub(stack_t **stack, unsigned int line_no);
+
 
 /**
- * 
+ * struct arg_s: files,tokens,and line numbers 
  **/
 typedef struct arg_s
 {
@@ -59,4 +79,17 @@ typedef struct arg_s
 
 extern arg_t *arguments;
 
+/*
+ * invalid_instruct: handles invalid instructions
+ *
+ **/
+
+void invalid_instruct(void)
+{
+        dprintf(2, "L%d: unknown instruction %s\n", arguments->line_no, arguments->tokens[0]);
+        close();
+        free_tokens();
+        free_arguments();
+        exit(EXIT_FAILURE);
+}
 #endif /* MONTY_H */
